@@ -1,0 +1,43 @@
+spring:
+    application:
+        name: ofx-gateway
+    cloud:
+        gateway:
+            globalcors:
+                cors-configurations:
+                    '[/**]':
+                        allowedOrigins: "*" #"https://localhost:3000"
+                        allowedMethods: 
+                            - GET
+                            - POST
+                            - PUT
+                            - PATCH
+                            - DELETE
+                        allowedHeaders: '*'
+                        maxAge: 30
+            routes:
+                -   id: ofx-ms-import
+                    uri: http://localhost:8040
+                    predicates:
+                        - Path=/api/v1/import/**
+
+                -   id: ofx-ms-data
+                    uri: http://localhost:8030
+                    predicates:
+                        - Path=/api/v1/data/**
+
+                -   id: ofx-ms-sse
+                    uri: http://localhost:8099
+                    predicates:
+                        - Path=/api/v1/sse/**
+
+                -   id: ofx-permission-checker
+                    uri: http://localhost:8050
+                    predicates:
+                        - Path=/api/v1/permission-checker/**
+                    metadata:
+                        cors:
+                            allowedOrigins: '*'
+                            allowedMethods: GET,POST                            
+                            allowedHeaders: '*'
+                            maxAge: 30
