@@ -39,3 +39,13 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        password: ${{ secrets.VPS_SSH_KEY }}
+        port: ${{ secrets.VPS_HOST }}
+        script: |
+          cd /srv/deploy/;docker stop ofx-gateway;docker rm ofx-gateway;docker pull luisfj/ofx-gateway:latest;docker run luisfj/ofx-gateway -d --env-file ./.env
