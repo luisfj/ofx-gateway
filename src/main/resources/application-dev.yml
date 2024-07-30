@@ -1,24 +1,6 @@
-server:
-    port: 8080
 spring:
-    profiles:
-        default: dev
-    application:
-        name: ofx-gateway
     cloud:
         gateway:
-            globalcors:
-                cors-configurations:
-                    '[/**]':
-                        allowedOrigins: "*" #"https://localhost:3000"
-                        allowedMethods: 
-                            - GET
-                            - POST
-                            - PUT
-                            - PATCH
-                            - DELETE
-                        allowedHeaders: '*'
-                        maxAge: 30
             routes:
                 -   id: ofx-ms-import
                     uri: http://localhost:8040
