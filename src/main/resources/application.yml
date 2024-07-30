@@ -3,6 +3,7 @@ server:
 spring:
     profiles:
         default: dev
+        active: ${SPRING_ACTIVE_PROFILE:default}
     application:
         name: ofx-gateway
     cloud:
