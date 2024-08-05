@@ -2,8 +2,7 @@ server:
     port: 8080
 spring:
     profiles:
-        default: dev
-        active: ${SPRING_ACTIVE_PROFILE:default}
+        active: ${SPRING_ACTIVE_PROFILE:dev}
     application:
         name: ofx-gateway
     cloud:

@@ -53,4 +53,4 @@ jobs:
         key: ${{ secrets.VPS_SSH_KEY }}
         port: ${{ secrets.VPS_PORT }}
         script: |
-          cd /srv;docker stop ofx-gateway;docker rm ofx-gateway;docker rmi luisfj/ofx-gateway;docker pull luisfj/ofx-gateway:latest;docker run -d --env-file ./deploy/env.list --network prodnet --name ofx-gateway -p 8080:8080 luisfj/ofx-gateway
+          cd /srv;docker stop ofx-gateway;docker rm ofx-gateway;docker rmi luisfj/ofx-gateway;docker pull luisfj/ofx-gateway:latest;docker run -d -m 300m --env-file ./deploy/env.list --network prodnet --name ofx-gateway -p 8080:8080 luisfj/ofx-gateway
