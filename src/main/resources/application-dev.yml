@@ -1,29 +1,13 @@
 spring:
-    cloud:
-        gateway:
-            routes:
-                -   id: ofx-ms-import
-                    uri: http://localhost:8040
-                    predicates:
-                        - Path=/api/v1/import/**
-                        
-                -   id: ofx-ms-data
-                    uri: http://localhost:8030
-                    predicates:
-                        - Path=/api/v1/data/**
-
-                -   id: ofx-ms-sse
-                    uri: http://localhost:8099
-                    predicates:
-                        - Path=/api/v1/sse/**
-
-                -   id: ofx-permission-checker
-                    uri: http://localhost:8050
-                    predicates:
-                        - Path=/api/v1/permission-checker/**
-                    metadata:
-                        cors:
-                            allowedOrigins: '*'
-                            allowedMethods: GET,POST                            
-                            allowedHeaders: '*'
-                            maxAge: 30
+    application:
+        name: ofx-gateway
+    security:
+        oauth2:
+            resourceserver:
+                jwt:                
+                    issuer-uri: http://localhost:9091/realms/luifj-ofx-auth                    
+logging:
+    level:
+        org:
+            springframework: 
+                security: DEBUG
