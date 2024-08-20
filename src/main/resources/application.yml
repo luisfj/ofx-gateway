@@ -7,18 +7,6 @@ spring:
         name: ofx-gateway
     cloud:
         gateway:
-            globalcors:
-                cors-configurations:
-                    '[/**]':
-                        allowedOrigins: "*" #"https://localhost:3000"
-                        allowedMethods: 
-                            - GET
-                            - POST
-                            - PUT
-                            - PATCH
-                            - DELETE
-                        allowedHeaders: '*'
-                        maxAge: 30
             routes:
                 -   id: ofx-service-regitry
                     uri: lb://ofx-service-regitry
@@ -34,8 +22,6 @@ spring:
                     uri: lb://ofx-ms-data
                     predicates:
                         - Path=/api/v1/data/**
-                    # filters:
-                    #     - AddRequestHeader=Authorization, 'Bearer #{request.headers.Authorization}'
 
                 -   id: ofx-ms-sse
                     uri: lb://ofxmssse
@@ -46,16 +32,7 @@ spring:
                     uri: lb://ofx-permission-checker
                     predicates:
                         - Path=/api/v1/permission-checker/**
-                
-                    # filters:
-                        # - AddRequestHeader=Authorization, 'Bearer #{request.headers.Authorization}'
-                    # metadata:
-                    #     cors:
-                    #         allowedOrigins: '*'
-                    #         allowedMethods: GET,POST                            
-                    #         allowedHeaders: '*'
-                    #         maxAge: 30
 eureka:
   client:
     service-url:
-      defaultZone : http://localhost:8761/eureka/                    
+      defaultZone : http://localhost:8761/eureka/
