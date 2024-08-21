@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
+    SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
         return serverHttpSecurity
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
@@ -37,7 +37,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public WebFilter corsFilter() {
+    WebFilter corsFilter() {
         return (ServerWebExchange ctx, WebFilterChain chain) -> {
             ServerHttpRequest request = ctx.getRequest();
             if (CorsUtils.isCorsRequest(request)) {
@@ -56,6 +56,4 @@ public class SecurityConfig {
             return chain.filter(ctx);
         };
     }
-
-
 }

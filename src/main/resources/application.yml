@@ -7,6 +7,18 @@ spring:
         name: ofx-gateway
     cloud:
         gateway:
+            globalcors:
+                cors-configurations:
+                    '[/**]':
+                        allowedOrigins: "*" #"https://localhost:3000"
+                        allowedMethods:
+                            - GET
+                            - POST
+                            - PUT
+                            - PATCH
+                            - DELETE
+                        allowedHeaders: '*'
+                        maxAge: 30
             routes:
                 -   id: ofx-service-regitry
                     uri: lb://ofx-service-regitry
