@@ -7,43 +7,53 @@ spring:
         name: ofx-gateway
     cloud:
         gateway:
-            globalcors:
-                cors-configurations:
-                    '[/**]':
-                        allowedOrigins: "*" #"https://localhost:3000"
-                        allowedMethods:
-                            - GET
-                            - POST
-                            - PUT
-                            - PATCH
-                            - DELETE
-                        allowedHeaders: '*'
-                        maxAge: 30
+#            globalcors:
+#                cors-configurations:
+#                    '[/**]':
+#                        allowedOrigins: "*" #"https://localhost:3000"
+#                        allowedMethods:
+#                            - GET
+#                            - POST
+#                            - PUT
+#                            - PATCH
+#                            - DELETE
+#                        allowedHeaders: '*'
+#                        maxAge: 30
             routes:
                 -   id: ofx-service-regitry
                     uri: lb://ofx-service-regitry
                     predicates:
                         - Path=/eureka/**
+                    filters:
+                        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-ms-import
                     uri: lb://ofx-ms-import
                     predicates:
                         - Path=/api/v1/import/**
+                    filters:
+                        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-ms-data
                     uri: lb://ofx-ms-data
                     predicates:
                         - Path=/api/v1/data/**
+                    filters:
+                        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-ms-sse
                     uri: lb://ofxmssse
                     predicates:
                         - Path=/api/v1/sse/**
+                    filters:
+                        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-permission-checker
                     uri: lb://ofx-permission-checker
                     predicates:
                         - Path=/api/v1/permission-checker/**
+                    filters:
+                        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 eureka:
   client:
     service-url:
