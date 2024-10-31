@@ -1,6 +1,4 @@
 spring:
-    application:
-        name: ofx-gateway
     security:
         oauth2:
             resourceserver:

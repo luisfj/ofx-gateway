@@ -1,29 +1,11 @@
 spring:
-    cloud:
-        gateway:
-            routes:
-                -   id: ofx-ms-import
-                    uri: http://ofx-ms-import:8040
-                    predicates:
-                        - Path=/api/v1/import/**
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: ${KEYCLOAK_OFX_REALM}
 
-                -   id: ofx-ms-data
-                    uri: http://ofx-ms-data:8030
-                    predicates:
-                        - Path=/api/v1/data/**
-
-                -   id: ofx-ms-sse
-                    uri: http://ofx-ms-sse:8099
-                    predicates:
-                        - Path=/api/v1/sse/**
-
-                -   id: ofx-permission-checker
-                    uri: http://ofx-permission-checker:8050
-                    predicates:
-                        - Path=/api/v1/permission-checker/**
-                    metadata:
-                        cors:
-                            allowedOrigins: '*'
-                            allowedMethods: GET,POST                            
-                            allowedHeaders: '*'
-                            maxAge: 30
+eureka:
+    client:
+        service-url:
+            defaultZone : http://ofx-service-registry:8761/eureka/
