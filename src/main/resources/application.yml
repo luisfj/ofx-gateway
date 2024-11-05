@@ -20,8 +20,8 @@ spring:
 #                        allowedHeaders: '*'
 #                        maxAge: 30
             routes:
-                -   id: ofx-service-regitry
-                    uri: lb://ofx-service-regitry
+                -   id: ofx-service-registry
+                    uri: lb://ofx-service-registry
                     predicates:
                         - Path=/eureka/**
                     filters:
