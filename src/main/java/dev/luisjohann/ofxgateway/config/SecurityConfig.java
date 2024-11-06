@@ -19,6 +19,8 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
@@ -62,10 +64,10 @@ public class SecurityConfig {
             if (CorsUtils.isCorsRequest(request)) {
                 ServerHttpResponse response = ctx.getResponse();
                 HttpHeaders headers = response.getHeaders();
-                headers.add(HEADER_ACCESS_CONTROL_ALLOW_ORIGIN, "https://csu-ofx.top");
-                headers.add(HEADER_ACCESS_CONTROL_ALLOW_METHODS, HEADER_ACCESS_CONTROL_ALLOW_METHODS_VALUE);
-                headers.add(HEADER_ACCESS_CONTROL_MAX_AGE, HEADER_ACCESS_CONTROL_MAX_AGE_VALUE);
-                headers.add(HEADER_ACCESS_CONTROL_ALLOW_HEADERS, HEADER_ACCESS_CONTROL_ALLOW_HEADERS_VALUE);
+                headers.put(HEADER_ACCESS_CONTROL_ALLOW_ORIGIN, List.of(HEADER_ACCESS_CONTROL_ALLOW_ORIGIN_VALUE));
+                headers.put(HEADER_ACCESS_CONTROL_ALLOW_METHODS, List.of(HEADER_ACCESS_CONTROL_ALLOW_METHODS_VALUE));
+                headers.put(HEADER_ACCESS_CONTROL_MAX_AGE, List.of(HEADER_ACCESS_CONTROL_MAX_AGE_VALUE));
+                headers.put(HEADER_ACCESS_CONTROL_ALLOW_HEADERS, List.of(HEADER_ACCESS_CONTROL_ALLOW_HEADERS_VALUE));
 
                 if (request.getMethod() == HttpMethod.OPTIONS) {
                     response.setStatusCode(HttpStatus.OK);
