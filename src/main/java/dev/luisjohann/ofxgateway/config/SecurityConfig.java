@@ -62,7 +62,7 @@ public class SecurityConfig {
             if (CorsUtils.isCorsRequest(request)) {
                 ServerHttpResponse response = ctx.getResponse();
                 HttpHeaders headers = response.getHeaders();
-                headers.add(HEADER_ACCESS_CONTROL_ALLOW_ORIGIN, HEADER_ACCESS_CONTROL_ALLOW_ORIGIN_VALUE);
+                headers.add(HEADER_ACCESS_CONTROL_ALLOW_ORIGIN, "https://csu-ofx.top");
                 headers.add(HEADER_ACCESS_CONTROL_ALLOW_METHODS, HEADER_ACCESS_CONTROL_ALLOW_METHODS_VALUE);
                 headers.add(HEADER_ACCESS_CONTROL_MAX_AGE, HEADER_ACCESS_CONTROL_MAX_AGE_VALUE);
                 headers.add(HEADER_ACCESS_CONTROL_ALLOW_HEADERS, HEADER_ACCESS_CONTROL_ALLOW_HEADERS_VALUE);
