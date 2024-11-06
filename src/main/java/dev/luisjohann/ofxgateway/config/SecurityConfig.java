@@ -1,5 +1,6 @@
 package dev.luisjohann.ofxgateway.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +33,8 @@ public class SecurityConfig {
     public static final String HEADER_ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
     public static final String HEADER_ACCESS_CONTROL_ALLOW_METHODS_VALUE = "GET, PUT, POST, DELETE, OPTIONS, PATCH";
     public static final String HEADER_ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
-    public static final String HEADER_ACCESS_CONTROL_ALLOW_ORIGIN_VALUE = "http://localhost:3000";
+    @Value("${conf.access_control_allow_origin}")
+    String HEADER_ACCESS_CONTROL_ALLOW_ORIGIN_VALUE;
 
     @Bean
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {

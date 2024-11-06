@@ -9,3 +9,6 @@ eureka:
     client:
         service-url:
             defaultZone : http://ofx-service-registry:8761/eureka/
+
+conf:
+    access_control_allow_origin: ${BACKEND_BASE_URL}

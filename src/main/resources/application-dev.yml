@@ -9,3 +9,6 @@ logging:
         org:
             springframework: 
                 security: DEBUG
+
+conf:
+    access_control_allow_origin: http://localhost:3000
