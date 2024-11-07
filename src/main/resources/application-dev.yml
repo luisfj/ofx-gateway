@@ -4,11 +4,6 @@ spring:
             resourceserver:
                 jwt:                
                     issuer-uri: http://localhost:9091/realms/luifj-ofx-auth                    
-logging:
-    level:
-        org:
-            springframework: 
-                security: DEBUG
 
 conf:
     access_control_allow_origin: http://localhost:3000
