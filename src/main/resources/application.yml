@@ -63,6 +63,7 @@ eureka:
 logging:
     level:
         root: DEBUG
+        org.apache.http: DEBUG
         org.springframework.web: DEBUG
         dev.luisjohann.ofxpermissionchecker: DEBUG
         org.springframework.security: DEBUG
