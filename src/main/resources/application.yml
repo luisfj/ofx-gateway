@@ -53,8 +53,8 @@ spring:
                         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-permission-checker
-#                    uri: lb://ofx-permission-checker
-                    uri: http://ofx-permission-checker:8050
+                    uri: lb://ofx-permission-checker
+#                    uri: http://ofx-permission-checker:8050
                     predicates:
                         - Path=/api/v1/permission-checker/**
                     filters:
