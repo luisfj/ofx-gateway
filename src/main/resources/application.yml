@@ -57,7 +57,8 @@ spring:
                         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
                 -   id: ofx-permission-checker
-                    uri: lb://ofx-permission-checker
+#                    uri: lb://ofx-permission-checker
+                    uri: http://ofx-permission-checker:8050
                     predicates:
                         - Path=/api/v1/permission-checker/**
                     filters:
@@ -87,3 +88,5 @@ logging:
         org.springframework.web.reactive.function.client: DEBUG
         org.springframework.web.reactive.function.server: DEBUG
         org.springframework.web.filter.reactive: DEBUG
+        org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
+        reactor.netty: INFO
