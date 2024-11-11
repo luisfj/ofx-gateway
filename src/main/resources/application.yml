@@ -1,6 +1,8 @@
 server:
     port: 8080
     max-http-header-size: 64kb
+    ssl:
+        enabled: false
 spring:
     profiles:
         active: ${SPRING_ACTIVE_PROFILE:dev}
