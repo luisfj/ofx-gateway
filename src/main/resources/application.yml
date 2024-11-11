@@ -8,6 +8,11 @@ spring:
         name: ofx-gateway
     cloud:
         gateway:
+            httpclient:
+                connect-timeout: 6000
+                response-timeout: 60s
+                ssl:
+                    useInsecureTrustManager: true
 #            globalcors:
 #                cors-configurations:
 #                    '[/**]':
@@ -76,3 +81,7 @@ logging:
         org.keycloak.adapters: DEBUG
         org.keycloak.authentication: DEBUG
         org.keycloak.events: DEBUG
+        org.springframework.web.reactive.DispatcherHandler: DEBUG
+        org.springframework.web.reactive.function.client: DEBUG
+        org.springframework.web.reactive.function.server: DEBUG
+        org.springframework.web.filter.reactive: DEBUG
